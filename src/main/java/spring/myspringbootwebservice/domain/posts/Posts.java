@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Entity // 테이블과 링크될 클래스임을 나타낸다.
-public class Posts {
+public class Posts extends BaseTimeEntity{
 
     @Id // 해당 테이블의 PK 필드를 나타낸다.
     @GeneratedValue(strategy = GenerationType.IDENTITY) // PK의 생성 규칙을 나타낸다. 스프링 부트 2.0 이상 부턴는 GenerationType.IDENTITY 속성을 주어야 auto_increment가 된다.

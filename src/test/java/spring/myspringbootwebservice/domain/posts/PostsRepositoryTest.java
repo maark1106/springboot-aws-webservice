@@ -3,6 +3,7 @@ package spring.myspringbootwebservice.domain.posts;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -46,5 +47,27 @@ class PostsRepositoryTest {
         Posts post = list.get(0);
         assertThat(post.getTitle()).isEqualTo(title);
         assertThat(post.getContent()).isEqualTo(content);
+    }
+
+    @Test
+    public void BaseTimeEntity_등록(){
+        //given
+        LocalDateTime now = LocalDateTime.of(2024, 2, 15, 0, 0, 0);
+        postsRepository.save(Posts.builder()
+                .title("title")
+                .content("content")
+                .author("author")
+                .build());
+
+        //when
+        List<Posts> postsList = postsRepository.findAll();
+
+        //then
+        Posts posts = postsList.get(0);
+        System.out.println(">>>>>>> createDate=" + posts.getCreatedDate()+
+                ", modifiedDate=" +posts.getModifiedDate());
+
+        assertThat(posts.getCreatedDate()).isAfter(now);
+        assertThat(posts.getModifiedDate()).isAfter(now);
     }
 }
