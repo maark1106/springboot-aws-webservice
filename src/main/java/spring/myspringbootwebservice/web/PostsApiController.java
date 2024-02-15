@@ -24,14 +24,16 @@ public class PostsApiController {
     }
 
     //수정
+    //SpringBoot 3.2 버전 이상부터 매개변수 이름 인식하지 못하는 문제
+    //@RequestParam, @PathVariable에 -parameters(@PathVariable("id") Long id) 명시
     @PutMapping("/api/v1/posts/{id}")
-    public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto){
+    public Long update(@PathVariable("id") Long id, @RequestBody PostsUpdateRequestDto requestDto){
         return postsService.update(id, requestDto);
     }
 
     //조회
     @GetMapping("/api/v1/posts/{id}")
-    public PostsResponseDto findById(@PathVariable Long id){
+    public PostsResponseDto findById(@PathVariable("id") Long id){
         return postsService.findById(id);
     }
 }
