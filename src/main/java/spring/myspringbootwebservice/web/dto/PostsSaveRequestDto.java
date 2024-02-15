@@ -1,8 +1,12 @@
 package spring.myspringbootwebservice.web.dto;
 
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import spring.myspringbootwebservice.domain.posts.Posts;
 
+@Getter
+@NoArgsConstructor
 public class PostsSaveRequestDto {
 
     private String title;
